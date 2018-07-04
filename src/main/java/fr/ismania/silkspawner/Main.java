@@ -10,6 +10,8 @@ public class Main extends JavaPlugin {
 	public void onEnable() {
 
 		getLogger().info("Plugin démarré !");
+
+		//Enregistrement de l'event
 		getServer().getPluginManager().registerEvents(new Listeners(), this);
 		
 	}
