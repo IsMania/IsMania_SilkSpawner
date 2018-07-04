@@ -30,7 +30,7 @@ public class Listeners implements Listener {
 			
 			if(itemInHand == null) return;
 			
-			if(la_permission) {
+			if(p.hasPermission("sp.bypass")) {
 				
 				//Vérification du nom de la pioche
 				if(itemInHand.getItemMeta().getDisplayName().equals("§c§lPioche à Spawners") && itemInHand.getItemMeta().getDisplayName() != null) {
