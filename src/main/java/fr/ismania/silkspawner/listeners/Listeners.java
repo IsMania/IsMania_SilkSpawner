@@ -30,7 +30,11 @@ public class Listeners implements Listener {
 			
 			if(itemInHand == null) return;
 			
-			//Vérification du monde
+			if(la_permission) {
+				
+			} else {
+				
+				//Vérification du monde
 			if(p.getWorld() == Bukkit.getWorld("ASkyBlock")) {
 				
 				//Vérification du nom de la pioche
@@ -64,6 +68,8 @@ public class Listeners implements Listener {
 			} else {
 				p.sendMessage("§cTu ne peux pas récupérer de spawners dans ce monde !");
 				e.setCancelled(true);
+			}
+				
 			}
 
 		}
