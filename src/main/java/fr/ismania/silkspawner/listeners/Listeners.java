@@ -27,7 +27,7 @@ public class Listeners implements Listener {
 			
 			if(p.getWorld() == Bukkit.getWorld("ASkyBlock")) {
 				
-				if(itemInHand.getType() == Material.GOLD_PICKAXE && itemInHand.getItemMeta().getDisplayName().equals("§c§lPioche à Spawners")) {
+				if(itemInHand.getType() == Material.GOLD_PICKAXE && itemInHand.getItemMeta().getDisplayName().equals(/*§c§l*/"Pioche à Spawners")) {
 					
 					if(spawner.getSpawnedType() == EntityType.CHICKEN) {
 						
