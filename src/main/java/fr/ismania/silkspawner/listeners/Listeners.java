@@ -32,9 +32,6 @@ public class Listeners implements Listener {
 			
 			if(la_permission) {
 				
-				//Vérification du monde
-				if(p.getWorld() == Bukkit.getWorld("ASkyBlock")) {
-				
 				//Vérification du nom de la pioche
 				if(itemInHand.getItemMeta().getDisplayName().equals("§c§lPioche à Spawners") && itemInHand.getItemMeta().getDisplayName() != null) {
 					
@@ -60,7 +57,6 @@ public class Listeners implements Listener {
 						p.getWorld().dropItem(p.getLocation(), mob_spawner);
 						
 					}
-
 				}
 				
 			} else {
