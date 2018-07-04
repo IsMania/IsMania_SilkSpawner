@@ -11,7 +11,7 @@ public class Main extends JavaPlugin {
 
 		getLogger().info("Plugin démarré !");
 		getServer().getPluginManager().registerEvents(new Listeners(), this);
-
+		
 	}
 
 	public void onDisable() {

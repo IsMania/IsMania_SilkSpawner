@@ -25,29 +25,34 @@ public class Listeners implements Listener {
 			CreatureSpawner spawner = (CreatureSpawner) e.getBlock().getState();
 			ItemStack itemInHand = p.getItemInHand();
 			
+			if(itemInHand == null) return;
+			
 			if(p.getWorld() == Bukkit.getWorld("ASkyBlock")) {
 				
-				if(itemInHand.getType() == Material.GOLD_PICKAXE && itemInHand.getItemMeta().getDisplayName().equals(/*§c§l*/"Pioche à Spawners")) {
+				if(itemInHand.getItemMeta().getDisplayName().equals("§c§lPioche à Spawners") && itemInHand.getItemMeta().getDisplayName() != null) {
 					
-					if(spawner.getSpawnedType() == EntityType.CHICKEN) {
+					if(spawner.getSpawnedType() == EntityType.CHICKEN || spawner.getSpawnedType() == EntityType.VILLAGER || spawner.getSpawnedType() == EntityType.BLAZE || spawner.getSpawnedType() == EntityType.SKELETON || spawner.getSpawnedType() == EntityType.ZOMBIE || spawner.getSpawnedType() == EntityType.CREEPER || spawner.getSpawnedType() == EntityType.PIG || spawner.getSpawnedType() == EntityType.COW || spawner.getSpawnedType() == EntityType.SPIDER || spawner.getSpawnedType() == EntityType.SQUID || spawner.getSpawnedType() == EntityType.RABBIT || spawner.getSpawnedType() == EntityType.SHEEP || spawner.getSpawnedType() == EntityType.SLIME || spawner.getSpawnedType() == EntityType.WITCH || spawner.getSpawnedType() == EntityType.GUARDIAN) {
 						
 						ItemStack mob_spawner = new ItemStack(Material.MOB_SPAWNER);
 						BlockStateMeta mob_spawner_meta = (BlockStateMeta) mob_spawner.getItemMeta();
 						
 						CreatureSpawner cSpawner = spawner;
 						cSpawner.setSpawnedType(spawner.getSpawnedType());
+						cSpawner.setCreatureTypeByName(spawner.getCreatureTypeName());
 						
 						mob_spawner_meta.setBlockState(cSpawner);
+						mob_spawner_meta.setDisplayName(cSpawner.getCreatureTypeName() + " Spawner");
+						mob_spawner.setItemMeta(mob_spawner_meta);
 						
 						p.getWorld().dropItem(e.getBlock().getLocation(), mob_spawner);
 						
 					}
 
-				} else {
-					p.sendMessage("Tu ne peux pas récupérer de spawners dans ce monde !");
-					e.setCancelled(true);
 				}
 
+			} else {
+				p.sendMessage("§cTu ne peux pas récupérer de spawners dans ce monde !");
+				e.setCancelled(true);
 			}
 
 		}
