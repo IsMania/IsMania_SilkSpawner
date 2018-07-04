@@ -1,19 +1,15 @@
 package fr.ismania.silkspawner.listeners;
 
-import java.util.Arrays;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.CreatureSpawner;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.BlockStateMeta;
 
 public class Listeners implements Listener {
 
@@ -22,17 +18,7 @@ public class Listeners implements Listener {
 	public void onBreak(BlockBreakEvent e) {
 		
 		Player p = e.getPlayer();
-		ItemStack poule = new ItemStack((Material.MOB_SPAWNER));
 		Material detruit = e.getBlock().getType();
-
-		ItemStack t = new ItemStack(Material.GOLD_PICKAXE, 1);
-		ItemMeta tM = t.getItemMeta();
-		tM.setDisplayName("§6Récupérateur de spawners");
-		tM.addEnchant(Enchantment.SILK_TOUCH, 200, true);
-		tM.setLore(Arrays.asList("§7Récupérez vos spawners avec cette pioche"));
-		tM.hasItemFlag(ItemFlag.HIDE_DESTROYS);
-		t.setItemMeta(tM);
-		t.setDurability((short)1);		
 
 		if(detruit == Material.MOB_SPAWNER) {
 			
@@ -44,7 +30,17 @@ public class Listeners implements Listener {
 				if(itemInHand.getType() == Material.GOLD_PICKAXE && itemInHand.getItemMeta().getDisplayName().equals("§c§lPioche à Spawners")) {
 					
 					if(spawner.getSpawnedType() == EntityType.CHICKEN) {
-						p.getInventory().addItem(poule);
+						
+						ItemStack mob_spawner = new ItemStack(Material.MOB_SPAWNER);
+						BlockStateMeta mob_spawner_meta = (BlockStateMeta) mob_spawner.getItemMeta();
+						
+						CreatureSpawner cSpawner = spawner;
+						cSpawner.setSpawnedType(spawner.getSpawnedType());
+						
+						mob_spawner_meta.setBlockState(cSpawner);
+						
+						p.getWorld().dropItem(e.getBlock().getLocation(), mob_spawner);
+						
 					}
 
 				} else {
