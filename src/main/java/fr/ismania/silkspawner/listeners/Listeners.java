@@ -31,23 +31,24 @@ public class Listeners implements Listener {
 
 			if(!p.hasPermission("sp.bypass")) {
 
-				//Vérification du monde
-				if(p.getWorld() == Bukkit.getWorld("ASkyBlock")) {
+				//Vérification du nom de la pioche
+				if(itemInHand.getItemMeta().getDisplayName().equals("§c§lPioche à Spawners")) {
 
-					//Vérification du nom de la pioche
-					if(itemInHand.getItemMeta().getDisplayName().equals("§c§lPioche à Spawners") && itemInHand.getItemMeta().getDisplayName() != null) {
+					//Vérification du monde
+					if(p.getWorld() == Bukkit.getWorld("ASkyBlock")) {
+						
 						//Vérification des mobs spawner par le spawner
 						if(spawner.getSpawnedType() == EntityType.CHICKEN || spawner.getSpawnedType() == EntityType.VILLAGER || spawner.getSpawnedType() == EntityType.BLAZE || spawner.getSpawnedType() == EntityType.SKELETON || spawner.getSpawnedType() == EntityType.ZOMBIE || spawner.getSpawnedType() == EntityType.CREEPER || spawner.getSpawnedType() == EntityType.PIG || spawner.getSpawnedType() == EntityType.COW || spawner.getSpawnedType() == EntityType.SPIDER || spawner.getSpawnedType() == EntityType.SQUID || spawner.getSpawnedType() == EntityType.RABBIT || spawner.getSpawnedType() == EntityType.SHEEP || spawner.getSpawnedType() == EntityType.SLIME || spawner.getSpawnedType() == EntityType.WITCH || spawner.getSpawnedType() == EntityType.GUARDIAN) {
-
-							p.getInventory().remove(itemInHand);
-
+							
+							if(p.getInventory().contains(itemInHand)) p.getInventory().remove(itemInHand);
+							
 						}
 
+					} else {
+						p.sendMessage("§cTu ne peux pas récupérer de spawners dans ce monde !");
+						e.setCancelled(true);
 					}
 
-				} else {
-					p.sendMessage("§cTu ne peux pas récupérer de spawners dans ce monde !");
-					e.setCancelled(true);
 				}
 
 			}
