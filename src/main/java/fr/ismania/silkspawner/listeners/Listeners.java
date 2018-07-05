@@ -36,12 +36,12 @@ public class Listeners implements Listener {
 
 					//Vérification du monde
 					if(p.getWorld() == Bukkit.getWorld("ASkyBlock")) {
-						
+
 						//Vérification des mobs spawner par le spawner
 						if(spawner.getSpawnedType() == EntityType.CHICKEN || spawner.getSpawnedType() == EntityType.VILLAGER || spawner.getSpawnedType() == EntityType.BLAZE || spawner.getSpawnedType() == EntityType.SKELETON || spawner.getSpawnedType() == EntityType.ZOMBIE || spawner.getSpawnedType() == EntityType.CREEPER || spawner.getSpawnedType() == EntityType.PIG || spawner.getSpawnedType() == EntityType.COW || spawner.getSpawnedType() == EntityType.SPIDER || spawner.getSpawnedType() == EntityType.SQUID || spawner.getSpawnedType() == EntityType.RABBIT || spawner.getSpawnedType() == EntityType.SHEEP || spawner.getSpawnedType() == EntityType.SLIME || spawner.getSpawnedType() == EntityType.WITCH || spawner.getSpawnedType() == EntityType.GUARDIAN) {
-							
+
 							if(p.getInventory().contains(itemInHand)) p.getInventory().removeItem(itemInHand);
-							
+
 						}
 
 					} else {
